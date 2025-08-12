@@ -1,0 +1,54 @@
+
+flowchart TD
+    A[Data Sources\n- League fixtures & tables\n- Stats APIs (xG, shots, KPIs)\n- Match reports & player ratings\n- Social signals & news]
+    B[Rules & Targets\n- Top leagues list\n- Player segments (rising stars, skill, goals)\n- Content policies & rights heuristics]
+    C[Storage\n- Raw events & match logs\n- Player watchlist\n- Clip backlog & metadata]
+
+    D[Ingestion & Normalisation\n- Pull fixtures, results, reports\n- Parse key moments & ratings\n- Harmonise IDs]
+    E[Scouting Agent (Ranking)\n- Form + per‑90 metrics\n- Report sentiment (MOTM, quotes)\n- Spike detection (breakout games)]
+    F[Shortlist Builder\n- Thresholds by role/league\n- Diversity/rotation rules\n- Daily content quota]
+
+    G[Clip-Finder Agent\n- Smart queries (player+match+action)\n- Sources: YouTube, X, club channels\n- De-dup & quality filtering]
+    H[Rights & Risk Check (heuristic)\n- Source credibility\n- Transformative use checklist\n- Skip high-risk sources]
+    I[Download & Preprocess\n- Best available resolution\n- Trim to candidate moments\n- Transcribe audio]
+
+    J[Editing Agent\n- Shot selection + pacing\n- Template overlays & lower thirds\n- Auto captions & SFX\n- Optional AI voiceover]
+    K[Variant Export\n- 9:16 Shorts/TikTok\n- 1:1 Instagram Reels\n- 16:9 YouTube\n- Watermarking]
+    L[QC & Compliance\n- Loudness & resolution checks\n- No logos/banned elements\n- Final rights sanity pass]
+
+    M[Metadata Agent\n- Titles (A/B), descriptions\n- Hashtags & player tags\n- Credits/source notes\n- Language variants]
+    N[Scheduler & Posting\n- Platform APIs (YouTube, TikTok)\n- Best‑time heuristics\n- Backlog calendar]
+    O[Community Loop\n- Pin comment & CTA\n- Auto‑reply FAQ\n- Collab/duet prompts]
+
+    P[Analytics & Scoring\n- View‑through, CTR, retention\n- Top players/formats\n- Failure analysis (copyright blocks)]
+    Q[Continuous Learning\n- Update scouting weights\n- Refine prompts & templates\n- Expand watchlist & sources]
+
+    %% Connections
+    A --> D
+    B --> E
+    C --> F
+    A --> B
+    B --> C
+
+    D --> G
+    E --> H
+    F --> I
+
+    G --> J
+    H --> K
+    I --> L
+
+    J --> M
+    K --> N
+    L --> O
+
+    M --> P
+    N --> P
+    O --> P
+
+    P --> Q
+    Q --> G
+    P --> E
+
+    classDef stage fill:#fff,stroke:#000,stroke-width:1px;
+    class A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q stage;
